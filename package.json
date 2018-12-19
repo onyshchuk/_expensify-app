@@ -8,11 +8,14 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server --mode development",
-    "test": "jest"
+    "test": "jest",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.4",
     "moment": "^2.23.0",
     "normalize.css": "^8.0.1",
     "react": "^16.6.3",
