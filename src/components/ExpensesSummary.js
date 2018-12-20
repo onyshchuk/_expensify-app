@@ -5,19 +5,23 @@ import getVisibleExpenses from './../selectors/expenses';
 import getExpensesTotal from './../selectors/expenses-total';
 
 
-export const ExpensesSummary = props => {
-   const visibleExpenses = getVisibleExpenses(props.expenses, props.filters);
-   const expensesTotal = getExpensesTotal(visibleExpenses) / 100;
-
+export const ExpensesSummary = ({ expenseCount, expensesTotal }) => {
+   const expenseWord = expenseCount === 1 ? 'expense' : 'expenses';
+   const formattedExpensesTotal = numeral(expensesTotal / 100).format('$0,0.00');
    return (
-      <p>Viewing {visibleExpenses.length} {visibleExpenses.length === 1 ? 'expense' : 'expenses'} totaling {numeral(expensesTotal).format('$0,0.00')}</p>
+      <div>
+         <h1>Viewing {expenseCount} {expenseWord} totaling {formattedExpensesTotal}</h1>
+      </div>
    );
 };
 
-const mapStateToProps = state => ({
-   expenses: state.expenses,
-   filters: state.filters
-});
+const mapStateToProps = state => {
+   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+   return {
+      expenseCount: visibleExpenses.length,
+      expensesTotal: getExpensesTotal(visibleExpenses)
+   }
+};
 
 export default connect(mapStateToProps)(ExpensesSummary);
 
