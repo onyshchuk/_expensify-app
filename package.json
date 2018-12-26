@@ -17,6 +17,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "firebase": "^5.7.0",
+    "history": "^4.7.2",
     "moment": "^2.23.0",
     "normalize.css": "^8.0.1",
     "numeral": "^2.0.6",
